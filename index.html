@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./Images/Logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Dynamic Cards</title>
+</head>
+<body>
+    <header class="header">
+        <figure class="header__logo">
+            <img src="https://logos-world.net/wp-content/uploads/2023/06/Marvel-Comics-Logo.jpg" alt="Marvel Comics Logo" class="header__image" loading="lazy" decoding="async">
+        </figure>
+        <nav class="header__menu" aria-label="Main navigation menu">
+            <ul class="header__navigation">
+                <li><a class="header__link" href="https://platzi.com" title="Link to the website of Platzi">Platzi</a></li>
+                <li><a class="header__link" href="https://netflix.com" title="Link to the website of Netflix">Netflix</a></li>
+                <li><a class="header__link" href="https://github.com" title="Link to the website of Github">Github</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="filter">
+        <label for="comic-filter">Filter by the group of hero: </label>
+        <select class="filter__input" name="comic-filter" id="comic-filter">
+            <option class="filer__option" value="Total" class="filter__option" selected>Please select an option</option>
+            <option class="filter__option" value="Thor" class="filter__option">Thor</option>            
+            <option class="filter__option" value="Avengers" class="filter__option">Avengers</option>            
+            <option class="filter__option" value="DeadPool" class="filter__option">DeadPool</option>            
+            <option class="filter__option" value="Shang-Chi" class="filter__option">Shang-Chi</option>            
+            <option class="filter__option" value="Spider-Man" class="filter__option">Spider-Man</option>            
+            <option class="filter__option" value="Fantastic Four" class="filter__option">Fantastic Four</option>            
+            <option class="filter__option" value="Captain America" class="filter__option">Captain America</option>            
+        </select>
+    </section>
+
+    <section class="card" id="cardContainer">
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>

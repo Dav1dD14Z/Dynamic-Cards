@@ -112,6 +112,8 @@ const comics = [
         stock: 6
     },
 ];
+let currentComics = comics;
+let onlyAvailable = false;
 
 const renderCards = array => {
     let cardsHTML = "";
@@ -164,35 +166,42 @@ const renderStats = array => {
     stats.innerHTML = statsHTML;
 };
 
+const updateUI = () => {
+    renderCards(currentComics);
+    renderStats(currentComics);
+}
+
 const filterArray = (array, value) => array.filter(comic => comic.category === value);
 
 const main = () => {
-    renderOptions(comics);
-    renderCards(comics);
-    renderStats(comics)
+    renderOptions(currentComics);
+    updateUI();
 
     comicOptions.addEventListener('change', (e) => {
+        onlyAvailable = false;
         let categorySelected = e.target.value;
-        let filteredArray = filterArray(comics, categorySelected);
-        localStorage.setItem('savedArray', JSON.stringify(filteredArray));
+        currentComics = filterArray(comics, categorySelected);
 
         if(categorySelected === "All") {
-            renderCards(comics);
-            renderStats(comics);
+            currentComics = comics;
+            updateUI();
             return;
         }
 
-        renderCards(filteredArray);
-        renderStats(filteredArray);
+        updateUI();
     });
 
-    onlyButton.addEventListener('click', () => {
-        let storedArray = localStorage.getItem('savedArray');
-        let onlyArray = JSON.parse(storedArray);
-        let filteredArray = onlyArray.filter(comic => comic.stock !== 0);
-        renderCards(filteredArray);
-        renderStats(filteredArray);
+    onlyButton.addEventListener("click", () => {
+        if (onlyAvailable === false) {
+            onlyAvailable = true;
+            let temporalComics = currentComics.filter(comic => comic.stock > 0);
+            renderCards(temporalComics);
+            renderStats(temporalComics);
+        } else {
+            onlyAvailable = false;
+            updateUI();
+        }
     })
 }
 
-main()
+main();
